@@ -15,6 +15,10 @@ class Follow(models.Model):
     class Meta:
         verbose_name = 'подписки'
         verbose_name_plural = 'Подписки'
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'following'],
+                                    name='unique_following')
+        ]
 
     def __str__(self):
         return self.title
